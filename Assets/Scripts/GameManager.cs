@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GameManager : MonoBehaviour 
@@ -43,6 +44,10 @@ public class GameManager : MonoBehaviour
             score = value;
         }
     }
+    [SerializeField]
+    private int scoreToWin;
+    [SerializeField]
+    private string nextSceneName;
 
     //[SerializeField]
     //private Text livesText;
@@ -71,9 +76,13 @@ public class GameManager : MonoBehaviour
     }*/
 
     // Update is called once per frame
-    /*void Update()
+    void Update()
     {
-        scoreText.text = score.ToString();
-        livesText.text = "x" + lives.ToString();
-    }*/
+        //scoreText.text = score.ToString();
+        //livesText.text = "x" + lives.ToString();
+        if (score >= scoreToWin)
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
+    }
 }
