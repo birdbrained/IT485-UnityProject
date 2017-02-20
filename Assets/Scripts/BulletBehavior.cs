@@ -12,20 +12,21 @@ public class BulletBehavior : MonoBehaviour
     private GameObject splishObj;
     private AudioSource shootSound;
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start () 
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * speed;
         //Destroy(gameObject, timeBeforeDestroy);
         shootSound = GetComponent<AudioSource>();
         shootSound.Play();
-	}
+    }
 	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () 
+    {
 	
-	}
+    }
 
     void OnTriggerEnter(Collider other)
     {

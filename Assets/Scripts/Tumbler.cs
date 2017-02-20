@@ -6,11 +6,11 @@ public class Tumbler : MonoBehaviour
     private Rigidbody rb;
     public float tumblr;
 
-	void Start () 
+    void Start () 
     {
         rb = GetComponent<Rigidbody>();
         Tumble();
-	}
+    }
 
     void Tumble()
     {

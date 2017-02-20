@@ -1,25 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Up : MonoBehaviour {
-
+public class Up : MonoBehaviour 
+{
     private bool isRising;
     public float shootDistance;
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start () 
     {
         isRising = false;	
-	}
+    }
 	
-	// Update is called once per frame
-	void FixedUpdate () 
+    // Update is called once per frame
+    void FixedUpdate () 
     {
         if (isRising)
         {
             transform.Translate(Vector3.up * Time.deltaTime, Space.World);
         }
-	}
+    }
 
     public void AmIRising(bool b)
     {
