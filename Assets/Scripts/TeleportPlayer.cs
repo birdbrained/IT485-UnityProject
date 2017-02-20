@@ -12,6 +12,8 @@ public class TeleportPlayer : MonoBehaviour
     public Material activeMaterial;
     private bool IsGazedAt;
 
+    private AudioSource teleportSound;
+
     //Lerping colors
     public float lerpTime;
     private float colorStep;
@@ -27,7 +29,7 @@ public class TeleportPlayer : MonoBehaviour
         else
             teleportLocation.y += 0.5f;
         SetGazedAt(false);
-
+        teleportSound = GetComponent<AudioSource>();
         //colors[0] = Color.white;
         //colors[1] = Color.cyan;
         //colors[2] = Color.blue;
@@ -74,6 +76,7 @@ public class TeleportPlayer : MonoBehaviour
     public void TeleportThePlayer()
     {
         player.transform.localPosition = teleportLocation;
+        teleportSound.Play();
     }
 
     //These functions are the ones that are called in the editor
