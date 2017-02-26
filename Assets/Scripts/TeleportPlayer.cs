@@ -15,6 +15,8 @@ public class TeleportPlayer : MonoBehaviour
     private AudioSource teleportSound;
 
     //Lerping colors
+    [SerializeField]
+    private bool CanLerp;
     public float lerpTime;
     private float colorStep;
     public Color[] colors;
@@ -37,7 +39,7 @@ public class TeleportPlayer : MonoBehaviour
 
     void Update()
     {
-        if (IsGazedAt)
+        if (IsGazedAt && CanLerp)
         {
             if (colorStep < lerpTime)
             {

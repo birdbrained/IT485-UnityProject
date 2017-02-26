@@ -66,14 +66,15 @@ public class GameManager : MonoBehaviour
     }
 
     // Use this for initialization
-    /*void Awake()
+    void Awake()
     {
-        livesText.text = "x" + lives.ToString();
-        if (score == 0)
-        {
-            scoreText.text = score.ToString();
-        }
-    }*/
+        //livesText.text = "x" + lives.ToString();
+        //if (score == 0)
+        //{
+        //    scoreText.text = score.ToString();
+        //}
+        score = 0;
+    }
 
     // Update is called once per frame
     void Update()
