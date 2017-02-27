@@ -12,7 +12,7 @@ public class DisappearOnCollision : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("I hit a thing! Tag: " + other.tag);
+        //Debug.Log("I hit a thing! Tag: " + other.tag);
         if (other.tag == "Player" || other.tag == "JuiceBox")
         {
             rend.enabled = false;
@@ -21,6 +21,7 @@ public class DisappearOnCollision : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        //Debug.Log("A thing left! Tag: " + other.tag);
         if (other.tag == "Player" || other.tag == "JuiceBox")
         {
             rend.enabled = true;
