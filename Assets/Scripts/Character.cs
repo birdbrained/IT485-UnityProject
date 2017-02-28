@@ -4,17 +4,19 @@ using System.Collections.Generic;
 
 public abstract class Character : MonoBehaviour 
 {
+    protected IEnemyStates currentState;
     [SerializeField]
     protected List<string> damageSources = new List<string>();
     [SerializeField]
     protected int health;
     public abstract bool IsDead { get; }
     public bool TakingDamage { get; set; }
+    public Animator MyAnimator { get; private set; }
 
     // Use this for initialization
     public virtual void Start () 
     {
-        
+        MyAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame

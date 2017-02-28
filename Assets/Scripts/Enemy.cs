@@ -4,6 +4,9 @@ using System;
 
 public class Enemy : Character 
 {
+    [SerializeField]
+    protected bool CanAnimate;
+
     public override bool IsDead
     {
         get
@@ -41,6 +44,10 @@ public class Enemy : Character
         if (!IsDead)
         {
             //Here would go the code to set an animation trigger "damage"
+            if (CanAnimate)
+            {
+                MyAnimator.SetTrigger("damage");
+            }
         }
         else
         {
