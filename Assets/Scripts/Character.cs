@@ -12,11 +12,15 @@ public abstract class Character : MonoBehaviour
     public abstract bool IsDead { get; }
     public bool TakingDamage { get; set; }
     public Animator MyAnimator { get; private set; }
+    public Collider MyCollider { get; private set; }
+    public Rigidbody MyRB { get; private set; }
 
     // Use this for initialization
     public virtual void Start () 
     {
         MyAnimator = GetComponent<Animator>();
+        MyCollider = GetComponent<Collider>();
+        MyRB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame

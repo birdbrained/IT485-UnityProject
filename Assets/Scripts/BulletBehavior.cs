@@ -39,7 +39,7 @@ public class BulletBehavior : MonoBehaviour
         {
             //Destroy(other.gameObject, 0);
             //other.gameObject.SetActive(false);
-            GameManager.Instance.Score++;
+            //GameManager.Instance.Score++;
             Instantiate(damageObj, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(gameObject);
         }

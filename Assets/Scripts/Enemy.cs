@@ -43,7 +43,7 @@ public class Enemy : Character
         health -= 10;
         if (!IsDead)
         {
-            //Here would go the code to set an animation trigger "damage"
+            //Set animation trigger "damage" only if object can animate (ex: sprite)
             if (CanAnimate)
             {
                 MyAnimator.SetTrigger("damage");
@@ -51,15 +51,36 @@ public class Enemy : Character
         }
         else
         {
-            //ani trigger "die"
+            if (CanAnimate)
+            {
+                MyAnimator.SetTrigger("die");
+            }
             //gameObject.tag = "Corpse";
             Death();
             yield return null;
         }
     }
 
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(5);
+        GameManager.Instance.Score++;
+        Destroy(gameObject);
+    }
+
     public override void Death()
     {
-        Destroy(gameObject);
+        if (CanAnimate)
+        {
+            //Delay death to play animation
+            MyCollider.isTrigger = false;
+            MyRB.useGravity = true;
+            StartCoroutine(Wait());
+        }
+        else
+        {
+            GameManager.Instance.Score++;
+            Destroy(gameObject);
+        }
     }
 }
