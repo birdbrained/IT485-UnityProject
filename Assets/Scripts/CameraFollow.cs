@@ -5,8 +5,6 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField]
     private GameObject camera;
-    [SerializeField]
-    private GameObject player;
     private float rotationY;
     private Animator animator;
 
