@@ -4,8 +4,38 @@ using System;
 
 public class Enemy : Character 
 {
+    protected IEnemyStates currentState;
     [SerializeField]
     protected bool CanAnimate;
+    public GameObject Target { get; set; }
+    [SerializeField]
+    protected float meleeRange;
+    [SerializeField]
+    protected float fireRange;
+
+    public bool InMeleeRange
+    {
+        get
+        {
+            if (Target != null)
+            {
+                return Vector3.Distance(transform.position, Target.transform.position) <= meleeRange;
+            }
+            return false;
+        }
+    }
+
+    public bool InFireRange
+    {
+        get
+        {
+            if (Target != null)
+            {
+                return Vector3.Distance(transform.position, Target.transform.position) <= fireRange;
+            }
+            return false;
+        }
+    }
 
     public override bool IsDead
     {
@@ -19,19 +49,37 @@ public class Enemy : Character
 	void Start () 
     {
         base.Start();
+        if (CanAnimate)
+        {
+            ChangeState(new IdleState());
+        }
 	}
 	
 	// Update is called once per frame
-	/*void Update () 
+	void Update () 
     {
         if (!IsDead)
         {
             if (!TakingDamage)
             {
-                //implement currentState here
+                if (CanAnimate)
+                {
+                    currentState.Execute();
+                }
             }
+            //LookAtTarget();
         }
-    }*/
+    }
+
+    public void ChangeState(IEnemyStates newState)
+    {
+        if (currentState != null)
+        {
+            currentState.Exit();
+        }
+        currentState = newState;
+        currentState.Enter(this);
+    }
 
     public override void OnTriggerEnter(Collider other)
     {
