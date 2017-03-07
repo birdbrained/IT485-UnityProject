@@ -7,7 +7,7 @@ public class AttackBehaviour : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
     {
         animator.GetComponent<Character>().Attacking = true;
-        animator.GetComponent<Character>().FireBullet();
+        //animator.GetComponent<Character>().FireBullet();
         animator.SetFloat("walkSpeed", 0);
     }
 

@@ -15,7 +15,7 @@ public class EnemyBulletBehaviour : MonoBehaviour
     void Start () 
     {
         rb = GetComponent<Rigidbody>();
-        transform.LookAt(Camera.main.transform.position, Camera.main.transform.up);
+        transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform.localPosition, Camera.main.transform.up);
         //rb.velocity = transform.forward * speed;
         //shootSound = GetComponent<AudioSource>();
         //shootSound.Play();
@@ -23,7 +23,7 @@ public class EnemyBulletBehaviour : MonoBehaviour
 	
     void FixedUpdate () 
     {
-        rb.velocity = new Vector3(1,1,1) * speed;
+        rb.velocity = transform.forward * speed;
     }
 
     public void Initialize(Vector3 dir)
@@ -33,13 +33,13 @@ public class EnemyBulletBehaviour : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        for (int i = 0; i < 3; i++)
-        {
-            GameObject obj = (GameObject)Instantiate(splishObj, gameObject.transform.position, gameObject.transform.rotation);
-            obj.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(0f, 3f), Random.Range(0f, 3f), Random.Range(0f, 3f));
-        }
         if (other.tag == "Player")
         {
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject obj = (GameObject)Instantiate(splishObj, gameObject.transform.position, gameObject.transform.rotation);
+                obj.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(0f, 3f), Random.Range(0f, 3f), Random.Range(0f, 3f));
+            }
             Destroy(gameObject);
         }
     }
