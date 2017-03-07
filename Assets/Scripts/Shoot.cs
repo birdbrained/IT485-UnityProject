@@ -7,11 +7,12 @@ public class Shoot : MonoBehaviour
     public Transform shotSpawn;
     public float fireRate;
     private float nextFire;
+    private Animator ani;
 
     // Use this for initialization
     void Start () 
     {
-        
+        ani = GetComponent<Animator>();
     }
 	
     // Update is called once per frame
@@ -21,6 +22,7 @@ public class Shoot : MonoBehaviour
         {
             nextFire = Time.time + fireRate;
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            ani.SetTrigger("shoot");
         }
     }
 }
