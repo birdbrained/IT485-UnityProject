@@ -42,6 +42,6 @@ public class PlayerController : Character
     public override void Death()
     {
         health = 30;
-        SceneManager.LoadScene("Main_Menu");
+        SceneManager.LoadScene("GameOver");
     }
 }
