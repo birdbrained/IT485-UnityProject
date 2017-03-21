@@ -8,9 +8,4 @@ public class PlayGameButton : MonoBehaviour
     {
         SceneManager.LoadScene(name);
     }
-
-    public void GazeAnimation(bool gazed)
-    {
-        gameObject.GetComponent<Animator>().SetBool("gazedAt", gazed);
-    }
 }
