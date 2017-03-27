@@ -37,7 +37,7 @@ public abstract class Character : MonoBehaviour
         
     }
 
-    public abstract IEnumerator TakeDamage();
+    public abstract IEnumerator TakeDamage(int damage);
     public abstract void Death();
 
     public virtual void FireBullet()
@@ -57,7 +57,16 @@ public abstract class Character : MonoBehaviour
     {
         if (damageSources.Contains(other.tag))
         {
-            StartCoroutine(TakeDamage());
+            int damage = 0;
+            if (other.name.Contains("Juice_Apple"))
+            {
+                damage = 5;
+            }
+            else if (other.name.Contains("Juice"))
+            {
+                damage = 10;
+            }
+            StartCoroutine(TakeDamage(damage));
         }
     }
 }

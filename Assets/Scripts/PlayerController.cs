@@ -59,11 +59,11 @@ public class PlayerController : Character
         }
     }
 
-    public override IEnumerator TakeDamage()
+    public override IEnumerator TakeDamage(int damage)
     {
         if (!immortal)
         {
-            health -= 10;
+            health -= damage;
             hurtSound.Play();
             if (!IsDead)
             {

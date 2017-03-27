@@ -9,6 +9,9 @@ public class Shoot : MonoBehaviour
     private float nextFire;
     private Animator ani;
 
+    [SerializeField]
+    private bool IsShotgun;
+
     // Use this for initialization
     void Start () 
     {
@@ -21,7 +24,28 @@ public class Shoot : MonoBehaviour
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            if (IsShotgun)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    Vector3 startPos = shotSpawn.position;
+                    Quaternion startRot = shotSpawn.rotation;
+                    float rand1 = Random.Range(-0.1f, 0.1f);
+                    float rand2 = Random.Range(-0.1f, 0.1f);
+                    float rand3 = Random.Range(-0.1f, 0.1f);
+                    startPos.x += rand1;
+                    startPos.y += rand2;
+                    startPos.x += rand3;
+                    startRot.x += rand1;
+                    startRot.y += rand2;
+                    startRot.z += rand3;
+                    Instantiate(shot, startPos, startRot);
+                }
+            }
+            else
+            {
+                Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            }
             ani.SetTrigger("shoot");
         }
     }

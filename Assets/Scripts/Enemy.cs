@@ -89,9 +89,10 @@ public class Enemy : Character
         base.OnTriggerEnter(other);
     }
 
-    public override IEnumerator TakeDamage()
+    public override IEnumerator TakeDamage(int damage)
     {
-        health -= 10;
+        //Debug.Log("Damage: " + damage.ToString());
+        health -= damage;
         if (!IsDead)
         {
             //Set animation trigger "damage" only if object can animate (ex: sprite)
