@@ -13,6 +13,9 @@ public class Enemy : Character
     [SerializeField]
     protected float fireRange;
 
+    [SerializeField]
+    protected GameObject deathObj;
+
     public bool InMeleeRange
     {
         get
@@ -128,6 +131,10 @@ public class Enemy : Character
         else
         {
             GameManager.Instance.Score++;
+            if (deathObj != null)
+            {
+                Instantiate(deathObj, gameObject.transform.position, gameObject.transform.rotation);
+            }
             Destroy(gameObject);
         }
     }
