@@ -65,6 +65,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private static int specialAmmo = 0;
+    public int SpecialAmmo
+    {
+        get
+        {
+            return specialAmmo;
+        }
+        set
+        {
+            specialAmmo = value;
+        }
+    }
+
+    private static int currentWeapon = 0;
+    public int CurrentWeapon
+    {
+        get
+        {
+            return currentWeapon;
+        }
+        set
+        {
+            currentWeapon = value;
+        }
+    }
+
     // Use this for initialization
     void Awake()
     {

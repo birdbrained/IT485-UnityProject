@@ -14,7 +14,7 @@ public class PlayerController : Character
     [SerializeField]
     private GameObject[] weapons;
 
-    public static int specialAmmo;
+    //public static int specialAmmo;
     public Text ammoText;
 
 	// Use this for initialization
@@ -22,21 +22,22 @@ public class PlayerController : Character
     {
         base.Start();
         hurtSound = GetComponent<AudioSource>();
-        specialAmmo = 0;
+        //GameManager.Instance.SpecialAmmo = 0;
+        FixActiveWeapon();
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        if (specialAmmo == 0 && !Attacking)
+        if (GameManager.Instance.SpecialAmmo == 0 && !Attacking)
         {
             PickupWeapon("Juicebox");
         }
         if (ammoText != null)
         {
-            if (specialAmmo > 0)
+            if (GameManager.Instance.SpecialAmmo > 0)
             {
-                ammoText.text = "x" + specialAmmo.ToString();
+                ammoText.text = "x" + GameManager.Instance.SpecialAmmo.ToString();
             }
             else
             {
@@ -126,7 +127,8 @@ public class PlayerController : Character
                 }
             }
             weapons[1].SetActive(true);
-            specialAmmo = 10;
+            GameManager.Instance.SpecialAmmo = 10;
+            GameManager.Instance.CurrentWeapon = 1;
         }
         else if (weaponName == "Juicebox")
         {
@@ -138,7 +140,21 @@ public class PlayerController : Character
                 }
             }
             weapons[0].SetActive(true);
-            specialAmmo = 0;
+            GameManager.Instance.SpecialAmmo = 0;
+            GameManager.Instance.CurrentWeapon = 0;
+        }
+    }
+
+    //Correctly changes the player's weapon when traveling between scenes
+    public void FixActiveWeapon()
+    {
+        if (GameManager.Instance.CurrentWeapon > 0)
+        {
+            foreach (GameObject juicebox in weapons)
+            {
+                juicebox.SetActive(false);
+            }
+            weapons[GameManager.Instance.CurrentWeapon].SetActive(true);
         }
     }
 }

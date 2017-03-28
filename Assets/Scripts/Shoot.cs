@@ -42,7 +42,7 @@ public class Shoot : MonoBehaviour
                     startRot.z += rand3;
                     Instantiate(shot, startPos, startRot);
                 }
-                PlayerController.specialAmmo--;
+                GameManager.Instance.SpecialAmmo--;
             }
             else
             {
