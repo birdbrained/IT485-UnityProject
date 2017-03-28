@@ -12,6 +12,8 @@ public class Shoot : MonoBehaviour
 
     [SerializeField]
     private bool IsShotgun;
+    [SerializeField]
+    private bool IsSpecial;
 
     // Use this for initialization
     void Start () 
@@ -42,6 +44,13 @@ public class Shoot : MonoBehaviour
                     startRot.z += rand3;
                     Instantiate(shot, startPos, startRot);
                 }
+                GameManager.Instance.SpecialAmmo--;
+            }
+            else if (IsSpecial)
+            {
+                Vector3 startPos = shotSpawn.position;
+                Quaternion startRot = shotSpawn.rotation;
+                Instantiate(shot, startPos, startRot);
                 GameManager.Instance.SpecialAmmo--;
             }
             else
