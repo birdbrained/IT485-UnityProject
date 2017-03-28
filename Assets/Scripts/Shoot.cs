@@ -5,6 +5,7 @@ public class Shoot : MonoBehaviour
 {
     public GameObject shot;
     public Transform shotSpawn;
+    public bool Firing { get; set; }
     public float fireRate;
     private float nextFire;
     private Animator ani;
@@ -21,7 +22,7 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update () 
     {
-        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        if (Input.GetButton("Fire1") && !Firing/*Time.time > nextFire*/)
         {
             nextFire = Time.time + fireRate;
             if (IsShotgun)
