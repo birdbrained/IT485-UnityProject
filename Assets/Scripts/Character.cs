@@ -57,7 +57,7 @@ public abstract class Character : MonoBehaviour
     {
         if (damageSources.Contains(other.tag))
         {
-            int damage = 0;
+            int damage = 10;
             if (other.name.Contains("Juice_Apple"))
             {
                 damage = 5;

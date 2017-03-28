@@ -15,6 +15,7 @@ public class Enemy : Character
 
     [SerializeField]
     protected GameObject deathObj;
+    protected bool canGiveScore = true;
 
     public bool InMeleeRange
     {
@@ -115,8 +116,13 @@ public class Enemy : Character
 
     IEnumerator Wait()
     {
+        if (canGiveScore)
+        {
+            GameManager.Instance.Score++;
+            canGiveScore = false;
+        }
         yield return new WaitForSeconds(5);
-        GameManager.Instance.Score++;
+        //GameManager.Instance.Score++;
         Destroy(gameObject);
     }
 
@@ -131,7 +137,11 @@ public class Enemy : Character
         }
         else
         {
-            GameManager.Instance.Score++;
+            if (canGiveScore)
+            {
+                GameManager.Instance.Score++;
+                canGiveScore = false;
+            }
             if (deathObj != null)
             {
                 Instantiate(deathObj, gameObject.transform.position, gameObject.transform.rotation);

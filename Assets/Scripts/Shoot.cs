@@ -42,6 +42,7 @@ public class Shoot : MonoBehaviour
                     startRot.z += rand3;
                     Instantiate(shot, startPos, startRot);
                 }
+                PlayerController.specialAmmo--;
             }
             else
             {
@@ -49,5 +50,10 @@ public class Shoot : MonoBehaviour
             }
             ani.SetTrigger("shoot");
         }
+    }
+
+    void OnEnable()
+    {
+        Firing = false;
     }
 }
