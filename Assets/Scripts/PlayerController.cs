@@ -156,6 +156,19 @@ public class PlayerController : Character
             GameManager.Instance.SpecialAmmo = 4;
             GameManager.Instance.CurrentWeapon = 2;
         }
+        else if (weaponName == "JuiceLazer" || weaponName == "JuiceLaser")
+        {
+            if (!weapons[3].gameObject.activeSelf)
+            {
+                foreach (GameObject juicebox in weapons)
+                {
+                    juicebox.SetActive(false);
+                }
+            }
+            weapons[3].SetActive(true);
+            GameManager.Instance.SpecialAmmo = 5;
+            GameManager.Instance.CurrentWeapon = 3;
+        }
     }
 
     //Correctly changes the player's weapon when traveling between scenes
