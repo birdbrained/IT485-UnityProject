@@ -13,4 +13,11 @@ public class ChangeLevelButton : MonoBehaviour
     {
         gameObject.GetComponent<Animator>().SetBool("gazedAt", gazed);
     }
+
+    public void ResetPlayerWeapon()
+    {
+        GameObject player = GameObject.Find("Player");
+        PlayerController pc = (PlayerController)player.GetComponent(typeof(PlayerController));
+        pc.PickupWeapon("Juicebox");
+    }
 }
