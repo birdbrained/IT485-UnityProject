@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ShootHitscan : MonoBehaviour 
 {
+    public Animator ani;
+    public bool Firing { get; set; }
     LineRenderer line;
     public bool FireTime;
     private bool CanDamageEnemy;
@@ -14,6 +16,7 @@ public class ShootHitscan : MonoBehaviour
     // Use this for initialization
     void Start () 
     {
+        ani = GetComponentInParent<Animator>();
         line = GetComponent<LineRenderer>();
         line.enabled = false;
         FireTime = false;
@@ -80,5 +83,6 @@ public class ShootHitscan : MonoBehaviour
         }
 
         line.enabled = false;
+        //GameManager.Instance.SpecialAmmo--;
     }
 }

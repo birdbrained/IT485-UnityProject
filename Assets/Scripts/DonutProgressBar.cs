@@ -31,6 +31,7 @@ public class DonutProgressBar : MonoBehaviour
         GameObject lazerShootPos = GameObject.FindGameObjectWithTag("LazerShootPos");
         ShootHitscan shoot = lazerShootPos.GetComponent<ShootHitscan>();
         shoot.FireTime = true;
-        GameManager.Instance.SpecialAmmo--;
+        shoot.ani.SetTrigger("shoot");
+        //GameManager.Instance.SpecialAmmo--;
     }
 }
