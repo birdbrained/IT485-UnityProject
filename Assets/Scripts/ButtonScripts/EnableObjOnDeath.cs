@@ -41,4 +41,9 @@ public class EnableObjOnDeath : MonoBehaviour
             }
         }
     }
+
+    public void DestroyMe()
+    {
+        Destroy(gameObject);
+    }
 }
