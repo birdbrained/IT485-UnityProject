@@ -5,9 +5,11 @@ public class ShootHitscan : MonoBehaviour
 {
     public Animator ani;
     public bool Firing { get; set; }
+    private AudioSource audio;
     LineRenderer line;
     public bool FireTime;
     private bool CanDamageEnemy;
+    private bool CanPlayAudio;
 
     //public float timer;
     //private float timerMax = 5.0f;
@@ -18,10 +20,12 @@ public class ShootHitscan : MonoBehaviour
     {
         ani = GetComponentInParent<Animator>();
         line = GetComponent<LineRenderer>();
+        audio = GetComponent<AudioSource>();
         line.enabled = false;
         FireTime = false;
         //timer = 0.0f;
         CanDamageEnemy = true;
+        CanPlayAudio = true;
     }
 
     // Update is called once per frame
@@ -39,6 +43,13 @@ public class ShootHitscan : MonoBehaviour
         {
             //timer += Time.deltaTime;
             StopCoroutine(FireHitscan());
+
+            if (CanPlayAudio)
+            {
+                audio.Play();
+                CanPlayAudio = false;
+            }
+
             StartCoroutine(FireHitscan());
             //FireTime = false;
         }
@@ -80,6 +91,7 @@ public class ShootHitscan : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             FireTime = false;
             CanDamageEnemy = true;
+            CanPlayAudio = true;
         }
 
         line.enabled = false;
