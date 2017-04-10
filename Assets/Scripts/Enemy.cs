@@ -73,6 +73,10 @@ public class Enemy : Character
             }
             //LookAtTarget();
         }
+        else
+        {
+            MyAnimator.SetTrigger("die");
+        }
     }
 
     public void ChangeState(IEnemyStates newState)

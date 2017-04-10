@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [SerializeField]
+    /*[SerializeField]
     private GameObject scorePrefab;
     public GameObject ScorePrefab
     {
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         {
             return scorePrefab;
         }
-    }
+    }*/
 
     //[SerializeField]
     //private Text scoreText;
@@ -47,7 +47,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int scoreToWin;
     [SerializeField]
-    private string nextSceneName;
+    private GameObject nextSceneUI;
+    //[SerializeField]
+    //private string nextSceneName;
 
     //[SerializeField]
     //private Text livesText;
@@ -100,6 +102,8 @@ public class GameManager : MonoBehaviour
         //    scoreText.text = score.ToString();
         //}
         score = 0;
+        if (nextSceneUI != null)
+            nextSceneUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -109,7 +113,9 @@ public class GameManager : MonoBehaviour
         //livesText.text = "x" + lives.ToString();
         if (score >= scoreToWin)
         {
-            SceneManager.LoadScene(nextSceneName);
+            //SceneManager.LoadScene(nextSceneName);
+            if (nextSceneUI != null)
+                nextSceneUI.SetActive(true);
         }
     }
 }
