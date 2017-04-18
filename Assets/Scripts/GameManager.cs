@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int scoreToWin;
     [SerializeField]
+    private Text scoreText;
+    [SerializeField]
+    private Image scoreBar;
+    [SerializeField]
     private GameObject nextSceneUI;
     //[SerializeField]
     //private string nextSceneName;
@@ -79,6 +83,10 @@ public class GameManager : MonoBehaviour
             specialAmmo = value;
         }
     }
+    [SerializeField]
+    private Text ammoText;
+    [SerializeField]
+    private Image ammoBar;
 
     private static int currentWeapon = 0;
     public int CurrentWeapon
@@ -117,5 +125,26 @@ public class GameManager : MonoBehaviour
             if (nextSceneUI != null)
                 nextSceneUI.SetActive(true);
         }
+
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + score.ToString();
+        }
+        if (scoreBar != null)
+        {
+            scoreBar.fillAmount = (float)score / (float)scoreToWin;
+        }
+        if (ammoText != null)
+        {
+            if (specialAmmo == 0)
+                ammoText.text = "";
+            else
+                ammoText.text = "Ammo: " + specialAmmo.ToString();
+        }
+        if (ammoBar != null)
+        {
+            ammoBar.fillAmount = (float)specialAmmo / 10f;
+        }
+
     }
 }

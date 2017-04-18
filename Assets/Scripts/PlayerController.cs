@@ -15,7 +15,11 @@ public class PlayerController : Character
     private GameObject[] weapons;
 
     //public static int specialAmmo;
-    public Text ammoText;
+    //public Text ammoText;
+    [SerializeField]
+    private Text lifeText;
+    [SerializeField]
+    private Image lifeBar;
 
 	// Use this for initialization
 	void Start () 
@@ -33,7 +37,7 @@ public class PlayerController : Character
         {
             PickupWeapon("Juicebox");
         }
-        if (ammoText != null)
+        /*if (ammoText != null)
         {
             if (GameManager.Instance.SpecialAmmo > 0)
             {
@@ -43,7 +47,8 @@ public class PlayerController : Character
             {
                 ammoText.text = "";
             }
-        }
+        }*/
+        HealthBar();
 	}
 
     public override bool IsDead
@@ -181,6 +186,18 @@ public class PlayerController : Character
                 juicebox.SetActive(false);
             }
             weapons[GameManager.Instance.CurrentWeapon].SetActive(true);
+        }
+    }
+
+    private void HealthBar()
+    {
+        if (lifeText != null)
+        {
+            lifeText.text = "Life: " + health.ToString();
+        }
+        if (lifeBar != null)
+        {
+            lifeBar.fillAmount = (float)health / 30f;
         }
     }
 }
