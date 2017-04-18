@@ -6,6 +6,9 @@ public class GiveWeapon : MonoBehaviour
     [SerializeField]
     private GameObject powerupSound;
 
+    [SerializeField]
+    private bool dontDestroy;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -23,6 +26,7 @@ public class GiveWeapon : MonoBehaviour
         pc.PickupWeapon(weaponName);
 
         Instantiate(powerupSound, gameObject.transform.position, gameObject.transform.rotation);
-        gameObject.SetActive(false);
+        if (!dontDestroy)
+            gameObject.SetActive(false);
     }
 }
